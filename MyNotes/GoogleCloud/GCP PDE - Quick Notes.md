@@ -1,0 +1,161 @@
+tags: #gcp #course #certification #professional #certificate #cloud #google #data #engineer
+
+---
+
+- To quickly redact sensitive information, **DATA LOSS PREVENTION** can be used
+- Quando il requisito è ri-usare Job Hadoop con il minimo management, il consiglio è di utilizzare **Dataproc** con un **Connettore GCS** in caso di dati persistenti.
+- **BIG TABLE**
+	- Incrementando la size di una tabella *Bigtable* aumentano i costi
+	- Usare uno schema con row-key che cambia spesso *riduce le performance*
+	- Sequential IDs *distrugge* le performance
+	- Per avere *buone performance* da *Bigtable* è necessario avere uno schema che *distribuisca* read & writes su tutte le tabelle
+- Il miglior modo per condividere gli stessi dati tra **BQ** e job **Hadoop & Spark** è storicizzare in **GCS**
+- **RUOLI NEI PROGETTI (JOB)**
+	- JobUser permette di eseguire e cancellare i propri job in un progetto
+	- User permette di eseguire query tra diversi progetti sotto un'organizzazione
+	- Owner permette anche di cancellare Job di altri
+	- Viewer non permette di eseguire Job
+- Pub/Sub **non mantiene** lo storico temporale, dunque è necessario associare un **timestamp nel publisher** ed ordinare in seguito con **Dataflow**
+- Per pipeline streaming di arricchimento e trasformazione è necessario usare **Dataflow con side-inputs**
+- Quando la velocità di rate **non è** abbastanza per trasferire la mole dei dati si **DEVE** usare **Google Transfer Appliance**
+- Per allenare una rete neurale si devono adattare **biases & weights**
+- **Compute Engine is no Ops free**. Se **non c'è** bisogno di processing o storage si usa **App Engine**
+- Per un POC su **testo** (ML) usare **CLOUD NATURAL LANGUAGE API**
+- Per un POC su **immagini** (ML) usare **CLOUD VISION API**
+- Per organizzare dipendenze tra dati, creare workflow o servizi si usa **Cloud Composer**
+- Per dare accesso solo a determinati dati bisogna creare Authorized View ed assegnare User role a livello di progetto
+- Per processare **audio** si usa **CLOUD SPEECH-TO-TEXT API**. **Sincrono** per audio **<1 min**, asincrono altrimenti
+- BigQuery ML **supporta Linear Regression**, **Binary Logistic** e **Multiclass Logistic**
+- **BigQuery** è l'ideale per analisi, supporta **OLAP**
+- **Datastore** è l'ideale per **semi-strutturati** e **NoOPS**, L'ideale per **cataloghi di prodotti**
+- **Dataprep** permette di effettuare operazioni a trasformazioni sui dati tramite **GUI**, *senza conoscere linguaggi*.
+- Cloud Storage non fornisce alcun servizio, è solo uno storage per qualsiasi tipo di dato.
+- BigQuery fornisce 2 metriche per gli slot: *Allocated* e *Available*
+- Per mantenere sincronizzati due Cloud Storage si deve usare **gsutil rsync** (se esterno --> Storage Transfer Service)
+- Per installare dipendenze ad un job con **solo permessi interni** bisogna **caricare le dipendenze su GCS** e installarle da lì
+- **Transfer Appliance** è utile per singoli trasferimenti, **Storage Transfer** può essere un'alternativa per quelli **periodici**
+- **Coldline** è per dati per cui prevediamo un **accesso annuale**
+- **DATAPROC**
+	- In caso di task **critici**con **DATAPROC** è consigliabile usare cluster in **High Availability**, Standard altrimenti
+	- **Preemptibles** nodes vengono usati **solo** se realmente necessari
+- Per questione di costi **è sempre** preferibile usare bucket **con region**
+- Il miglior modo per operazioni semplici e **preparare i dati** è usare **DATA PREP** ed usare le **trasformazioni consigliate per colonna**
+- Data Prep è utile anche per individuare anomalie nei dati
+- **Bigtable tall and narrow** tables sono ideali per **minimizzare** i costi di query per time series su valori individuali
+- **Pub/Sub** è il sostituto di Kafka. E' **scalabile** e **globale**, una **sola** istanza può essere usata per più regioni
+- **Relydiator** può essere usato per **decriptare** i dati
+- **Stackdriver** è un tool di **monitoring**, **logging**, **allerting**, **debugging**
+- **Datastore** è **scalabile**, NoOps e transazionale
+- Per spostare dati da Cloud SQL a BQ **bisogna passare** per GCS
+- Partitioning o Clustering possono essere usate per **velocizzare** le performance (*che l'ho scritto a fare???*)
+- Per accessi a **Dataproc** all'esterno si può usare **un NAT gateway**
+- **Kubernetes** *non è* lineare per **ML**!
+- Per spostare gli **Analytics** a **BQ bisogna** usare **BQ Transfer Service**
+- Online predictions vengono **restituiti nella response**, **non sono** consigliate per predizioni complesse
+- Per **ricevere notifiche da StackDriver bisogna:** usare StackDriver API, creare un sink per esportare su Pub/Sub e scrivere
+- Su Pub/Sub si generano duplicati quando non c'è **l'ACK**
+- Il modo migliore per settare gli indici in Datastore è **manualmente, separatamente**
+	- Su Datastore puoi settare gli indici tramite un JSON e ci sono tanti modi per farlo; uno tra questi è quello di mettere tutti gli indici "insieme" e poi ne setti i parametri oppure puoi settarli singolarmente (un nodo del JSON per ogni indice) ed è più corretto farlo perché puoi dare una impostazione diversa per ogni indice
+- **Dedicated Interconnect** è utile per dati **sopra i 10 Gbps** e SLA. **PARTNER per inferiori**
+- **Read Replicas** permette di **ridurre il carico** di lavoro sul DB principale
+- **Dialogflow** permette di disegnare interfacce mobile, web application, bot, ecc...
+- **Linear Regression** può essere usata per predirre
+- **Reinforcement Learning** può essere usato per disegnare modelli basati sul reward
+- **ML:**
+	- Classification --> Prendere 1 tra N labels ==S==
+	- Regression --> Predire valori numerici ==S==
+	- Clustering --> Raggruppare ==UNS==
+	- Association --> Inferire associazioni tra pattern ==UNS==
+	- Structured Output --> Creare output complessi (image recognition, NLP, ecc)
+	- Ranking --> Cercare, identificare una posizione in una scala
+- ==SUPERVISED:== CLASSIFICATION, REGRESSION
+- ==UNSUPERVIDED:== Clustering, Association, Dimensionality Reduction
+- Per muovere da **Ads** o **Ad Manager** a **BQ** bisogna usare **BigQuery Tranfer**
+- **Cloud SCHEDULER** permette di schedulare ogni job
+- BigQuery **non supporta**: cambio nome, cambio tipo, rendere required, cancellare una colonna
+- In Bigtable si usano tabelle **tall e narrow** quando:
+	- una riga per evento rende più facile le query **(time series)**
+	- più righe (*più colonne forse?*) per evento **supererebbero la size**
+- Le **external tables** permettono di creare tabelle da dati esterni a **BQ (es. GCS)**
+- Bigtable garantisce alto carico di richieste e bassa latenza, BQ no
+- Se vogliamo ==limitare== la quota in base ad alcune caratteristiche si settano le ==custom quotas==
+- Per aumentare la capacità **SSD** di Dataproc **usare HDFS**
+- Quando si migra da Relational to **CLOUD SPANNER** è opportuno usare **UUID come PK**, e tenere l'originale PK per le query
+- Se importando un CSV in BQ i file (*caratteri?*) sono distanti e non rispettano le colonne il file **non è UTF-8**
+- Per eseguire performance test su BT non usare **meno di 300GB**, esegui un **pre-test**, **almeno 10 minuti**
+- Se le performance di BT sono basse le righe **possono avere size larga** o le istanze **non hanno** abbastanza nodi
+- Se bisogna **migliorare i true positive** bisogna **incrementare** le **regularization** e **diminuire** le **feature parameters**
+- **ML EVAL:**
+	- **Dropout Regularization** va usato quando vanno rimosse selezioni random da un livello di una rete neurale
+	- **Precision** è la formula per verificare quando è accurato un modello de la maggior parte dell'outpit **è positivo**
+	- **Gradient Descent** viene usato per trovare il minimo in una funzione
+	- **Recall** è la formula per verificare quando è accurato un modello se la maggior parte dell'output **è negativo**
+- Per **Hyperparameter tuning** si usano number of nodes e number of hidden layers
+- Per eseguire modelli **già pronti** al deploy si usa **GOOGLE MACHINE LEARNING ENGINE**
+- **Google ML Deep Learning** permette di avere VM pre-configurate per DL applications
+- **Google Container Registry** è un servizio per usare le Docker images
+- **Google Kubernetes Engine** è un servizio per deploy e scale di Docker Container
+- Per **TensorFlow** è consigliato usare TPU
+- E' possibile usare **encryption key** esterna nelle API
+- Google **supporta recovery** da snapshot direttamente
+- Per backup di Datastore si usa **gcloud con cron**
+- Per vedere i dati sulla dashboard usare **Stackdriver**
+- Per adattare **all'incremento** della complessità ci sono **Neurons e Hidden Layer** 
+- Il tipo di storage di Bigtable non può essere cambiato
+- Si può accedere a **YARN** da DATAPROC tramite SOCKS
+- In BigQuery **si paga** storage, query e streaming
+- **Cloud Spanner** è oer quando c'è **Read/Write** in più regioni, l'alternativa in **sola lettura** è **READ REPLICA**
+- **Multiregional e Coldline** permettono di creare multi-region geo redundant
+- **Wide** model è usato per **memorizzare** mentre **deep model** per **generalizzare**, Utile per large-scale classification
+- **Cloud Video Intelligence** può essere usato per analizzare i video
+- **DML sono limitate dalle quote**. Il numero di UPDATE, DELETE e MERGE è 200/giorno per tabella
+- **Preemptible workers non possono** storicizzare dati, un cluster **non può essere** solo preemptible
+- **Custom tier** permette di specificare per il cluster:
+	- TrainingInput.**masterType** --> tipo del master
+	- TrainingInput.**workerCount** --> numero dei worker
+	- TrainingInput.**parameterServerCount** --> numero dei parametri server
+- Machine Learning Engine **supporta: TensorFlow!**
+- In **TensorFlow** se conosci i valori di una **colonna categorical** si usa **categorical_column_with_vocabolary_list**, **categorical_with_hash_backet** altrimenti
+- **Job Cloud Machine Learning** possono essere runnati localmente
+- A **Sparse Vector** contains **ONLY one 1** and containg **only 0 and 1**
+- **BigQuery** può essere usato **sink** batch o streaming
+- **Crossed feature** (*Feature Crosses?*) e **Bucketization** sono **feature engineering**
+- In Dataflow **trigger determinants** quando specifiche chiavi e window **vengono scritte**
+- **Dataflow supporta** i seguenti tipi di trigger: **on time**, **on element count** e **combinazione**
+- Quando si crea un cluster Dataproc **si devono** specificare; **progetto, regione, nome e zona**
+- Per **Bigtable** si possono dare i permessi di visione **ad una sola tabella** dando all'utente **Edit Role**
+- Il miglior modo per evitare **hotspotting** in Bigtable è **FIELD PROMOTION**
+- Quando disegni schemi **Bigtable** è raccomandabile richiedere **atomicità** tra le righe
+- **HBase shell** è un CLI tool per eseguire task amministrativi su Bigtable
+- Ragioni per cui le query **non vengono calcolate** in BQ sono **uso di wildcards** e **uso di funaioni CURRENT** (es. CURRENT_DATE() )
+- Per aggregare eventi distinti **SLIDING-WINDOWS**
+- Quando la matrice di confusione ha alti falsi positivi si può: **ordinare per "confusione"** e vedere se sono labelled correttamente, **remove labels**
+- To connect to service in **Dataproc** you can use **SSH Tunnel**
+- **Coldline** --> al massimo un'anno || **Nearline** --> Poche volte all'anno/1 al mese
+- Quando in AutoML (*vision*) abbiamo overfitting bisogna prendere le immagini da più angoli
+- **Quando Spanner** ha performance basse le cause possono essere : UUID come chiave, generate revision
+- E' possibile importare da **CLOUD SQL** a **BIGQUERY**
+- **Bigtable** può passare da Development a Production
+- **In BQ** la cache non funziona se si usano wildcards o se ci sono job che usano le tabelle
+- **Storage Transfer** permette di trasferire **dati ONLINE** in GCS, *applicance* **OFFLINE**
+- Per determinare **quando aumentare** la size in Bigtable bisogna:
+	- **Monitorare la latenza** delle operazioni di write (**write latency**)
+	- Monitorare **l'utilizzo storage** ed aumentare quando l'utilizzo **supera il 70%**
+- **Dataprep** non richiede **alcuna conoscenza** di linguaggi SQL
+- **gsutil rsynch** rende uguali una sorgente (directory, bucket) ed una destinazione
+- **Dataprep** può essere lanciato come Dataflow template
+- In **PUB/SUB** se un Messaggio supera i **10MB** non può essere pubblicato
+- **DIALOGFLOW** è usato per analisi vocali per interazioni umane
+- **Denormalization** aiuta a velocizzare le query. **UPDATE no buono in SLQ!**
+  Si può applicare "joinando" 2 tabelle in una ed utilizzando campi REPEATED
+- Con **multi-region** si ottiene un'alta disponibilità
+- Con **underfitting** bisogna **migliorare il modello**. Con **overfitting** problemi **di train**
+- **In Dataflow:**
+	- Local Executor utili per debug e test
+	- Usare **flatten** per avere **un'unica** operazione di **write**
+	- Se di hanno **multipli dataset** si usa **CoGroupByKey**
+- Per evitare **hotspot** in Spanner si dovrebbe usare una **chiave random**
+- Usare **Spanner** quando bisogna **scalare** per molti dati, **Cloud SQL altrimenti**
+- In **BQ** si può esportare in **CSV, JSON, AVRO (CSV senza nested)**
+- Se bisogna dare accesso **solo a N** colonne usare **AUTHORIZED VIEWS**
+- **Non si può** usare la WEB UI **di BQ** per file **>10 MB**, **più file** per volta, **SQL file**

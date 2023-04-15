@@ -1,0 +1,5 @@
+.obsidian/*
+.idea/*
+.out/*
+*.trash*
+*.DS_Store*
