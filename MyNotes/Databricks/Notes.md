@@ -1,4 +1,3 @@
-
 # Introduction
 
 Databrics è una piattaforma **LAKEHOSE** multicloud, basata su [Apache Spark](https://spark.apache.org/).

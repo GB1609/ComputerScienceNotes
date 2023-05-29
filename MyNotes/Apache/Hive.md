@@ -1,5 +1,3 @@
-**Tag Obsidian:** #database #datawarehouse #apache #BigData
-
 Hive è un software di **data warehouse** che i pone lo scopo di facilitare la scrittura, la lettura e la gestione di ampi dataset in un DFS ([DistributedFileSystem](./../UsefulGeneralNotes/DistributedFileSystem.md)) tramite l'ausilio di linguaggio SQL.
 
 Hive è costruito su database Hadoop e fornisce le seguenti features:
@@ -58,3 +56,4 @@ LOCATION '/data/stocks';
 - https://cwiki.apache.org/confluence/display/Hive//Home
 - https://www.guru99.com/introduction-hive.html#2
 ---
+**Tag Obsidian:** #database #datawarehouse #apache #BigData

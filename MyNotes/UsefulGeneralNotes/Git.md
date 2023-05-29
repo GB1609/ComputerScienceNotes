@@ -1,5 +1,3 @@
-**Tag Obsidian:** #git 
-
 Git is a **Distributed Version Control System (VCS)** open source. A VCS keeps track of every modification to the code in a special kind of database. If a mistake is made, developers can turn back the clock using rollback or revert and compare earlier versions of the code to help fix the mistake while minimizing disruption to all team members.
 
 ![git-branches](./../../Assets/Images/Notes/gitBranchesMerge.jpg)
@@ -55,3 +53,5 @@ Official page: https://git-scm.com/
 All commands: https://git-scm.com/docs
 
 ---
+
+**Tag Obsidian:** #git 

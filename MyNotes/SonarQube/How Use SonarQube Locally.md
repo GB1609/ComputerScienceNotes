@@ -1,5 +1,3 @@
-**Tag Obsidian:** #SonarQube #Apple #cleancode #Sonar #docker 
-
 The easiest way to use SonarQube is to use a local version.
 
 # Installation
@@ -94,3 +92,7 @@ sonar-scanner \
   -Dsonar.tests=src/test/scala -Dsonar.scala.coverage.reportPaths=target/scala-2.12/scoverage-report/scoverage.xml #\
   #-Dsonar.exclusions=$toExclude
 ```
+
+---
+
+**Tag Obsidian:** #SonarQube #Apple #cleancode #Sonar #docker 
