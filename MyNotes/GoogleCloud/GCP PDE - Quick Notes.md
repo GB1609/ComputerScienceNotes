@@ -1,7 +1,3 @@
-tags: #gcp #course #certification #professional #certificate #cloud #google #data #engineer
-
----
-
 - To quickly redact sensitive information, **DATA LOSS PREVENTION** can be used
 - Quando il requisito è ri-usare Job Hadoop con il minimo management, il consiglio è di utilizzare **Dataproc** con un **Connettore GCS** in caso di dati persistenti.
 - **BIG TABLE**
@@ -159,3 +155,9 @@ tags: #gcp #course #certification #professional #certificate #cloud #google #dat
 - In **BQ** si può esportare in **CSV, JSON, AVRO (CSV senza nested)**
 - Se bisogna dare accesso **solo a N** colonne usare **AUTHORIZED VIEWS**
 - **Non si può** usare la WEB UI **di BQ** per file **>10 MB**, **più file** per volta, **SQL file**
+
+---
+
+obsidian tags: #gcp #course #certification #professional #certificate #cloud #google #data #engineer
+
+---

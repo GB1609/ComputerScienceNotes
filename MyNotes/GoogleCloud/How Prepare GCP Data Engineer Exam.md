@@ -1,5 +1,3 @@
-#gcp #exam #cloud 
-
 # Prepare you Exam
 This page is for guidelines to follow to prepare for Google Cloud Data Engineering certification.
 
@@ -80,3 +78,7 @@ You can buy exam simulation on
 
 You can find question also on 
 - [Exam Topics](https://www.examtopics.com/)
+
+---
+Obsidian Tags:
+#gcp #exam #cloud 

@@ -1,5 +1,3 @@
-**Tag Obsidian:** #BigData #database 
-
 A distributed file system (**DFS**) is a file system that spans across multiple file servers or multiple locations, such as file servers that are situated in different physical places. Files are accessible just as if they were stored locally, from any device and from anywhere on the network.  
 A DFS makes it convenient to share information and files among users on a network in a controlled and authorized way.  
 
@@ -15,4 +13,7 @@ A distributed file system works as follows:
 
 -   **Distribution**: First, a DFS distributes datasets across multiple clusters or nodes. Each node provides its own computing power, which enables a DFS to process the datasets in parallel.
 -   **Replication**: A DFS will also replicate datasets onto different clusters by copying the same pieces of information into multiple clusters. This helps the distributed file system to achieve fault tolerance—to recover the data in case of a node or cluster failure—as well as high concurrency, which enables the same piece of data to be processed at the same time.
+
 ---
+
+**Tag Obsidian:** #BigData #database 
