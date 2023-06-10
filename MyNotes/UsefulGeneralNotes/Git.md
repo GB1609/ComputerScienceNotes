@@ -49,8 +49,8 @@ The `git push` command is used to upload local repository content to a remote 
 | `git revert`   | Displays the state of the working directory and the staged snapshot. You’ll want to run this in conjunction with git add and git commit to see exactly what’s being included in the next snapshot.                                                                   |
 
 # Link
-Official page: https://git-scm.com/
-All commands: https://git-scm.com/docs
+- Official page: https://git-scm.com/
+- All commands: https://git-scm.com/docs
 
 ---
 
