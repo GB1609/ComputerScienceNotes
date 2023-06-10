@@ -54,8 +54,8 @@ Le features di HDFS sono per lo più quelle fornite da un DFS:
 HDFS fornisce comandi da terminale propri utili per la creazione di file, cartelle e la navigazione nei vari nodi.
 
 # Link
-[Design](https://hadoop.apache.org/docs/r1.2.1/hdfs_design.html)
-[Commands](https://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-hdfs/HDFSCommands.html)
+- [Design](https://hadoop.apache.org/docs/r1.2.1/hdfs_design.html)
+- [Commands](https://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-hdfs/HDFSCommands.html)
 ---
 
 **Tag Obsidian:** #database #BigData #apache 

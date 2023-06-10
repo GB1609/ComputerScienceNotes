@@ -16,13 +16,13 @@ banner_lock: true
 	- [GCP PDE - Quick Notes](./MyNotes/GoogleCloud/GCP%20PDE%20-%20Quick%20Notes.md)
 - Databricks
 	- [Overview](./MyNotes/Databricks/Overview.md)
-	- [Notes](./MyNotes/Databricks/Notes.md)
+	- [Databricks Course Notes](MyNotes/Databricks/Databricks%20Course%20Notes.md)
 - Apache
 	- [HDFS](./MyNotes/Apache/HDFS.md)
 	- [Hive](./MyNotes/Apache/Hive.md)
 - SonarQube
 	- [How Use SonarQube Locally](./MyNotes/SonarQube/How%20Use%20SonarQube%20Locally.md)
-	- Slide SonarQube ![slides sonarqube in pptx](./MyNotes/SonarQube/SonarQube.pptx)
+	- [SonarQube Slides](MyNotes/SonarQube/SonarQube.pptx)
 
 # Vault Info
 - 🗄️ Recent file updates
