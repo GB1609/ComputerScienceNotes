@@ -1,3 +1,4 @@
+
 ---
 cssclass: dashboard
 banner: "![[home_wallpaper.png]]"
