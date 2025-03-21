@@ -627,7 +627,7 @@ Change Data Feed è una feature di Databricks per Deltalake che permette di crea
 
 Esempio implementazione qui: [code](https://github.com/derar-alhussein/Databricks-Certified-Data-Engineer-Professional/blob/7c91ff4d8a844b321e86c46efe419fd67f157046/3%20-%20Data%20Processing/3.2-%20CDF.py#L24-L24)
 
-# Stream Joins
+## Stream Joins
 
 Esempio implementazione join tra due stream: [code](https://github.com/derar-alhussein/Databricks-Certified-Data-Engineer-Professional/blob/7c91ff4d8a844b321e86c46efe419fd67f157046/3%20-%20Data%20Processing/3.2-%20CDF.py#L24-L24)
 
@@ -635,7 +635,7 @@ In caso di tabelle streaming esse sono sempre append ma per quanto riguarda le b
 
 Esempio implementazione qui: [code](https://github.com/derar-alhussein/Databricks-Certified-Data-Engineer-Professional/blob/7c91ff4d8a844b321e86c46efe419fd67f157046/3%20-%20Data%20Processing/3.4%20-%20Stream-Static%20Join.py)
 
-# Esempio Implementazione Gold
+## Esempio Implementazione Gold
 
 [code](https://github.com/derar-alhussein/Databricks-Certified-Data-Engineer-Professional/blob/7c91ff4d8a844b321e86c46efe419fd67f157046/3%20-%20Data%20Processing/3.5%20-%20Materialized%20Gold%20Tables.py#L24-L24)
 
@@ -683,14 +683,45 @@ Tramite la sezione workflow messa a disposizione da Databricks è possibile gest
 
 ![](../../Assets/Images/Notes/databricks/databricksTooling/jobExample.png)
 
-### Esempio implementazione
-
+Tutti gli esempi di implementazione qui: [code](https://github.com/derar-alhussein/Databricks-Certified-Data-Engineer-Professional/tree/7c91ff4d8a844b321e86c46efe419fd67f157046/5%20-%20Databricks%20Tooling)
 
 ## Rest Api
 La documentazione sull'utizzo delle api databricks è disponibile qui: [api](https://docs.databricks.com/api/workspace/introduction)
 ## Databrikcs CLI 
 La documentazione sulla command line databricks è disponibile qui: [documentation](https://docs.databricks.com/aws/en/dev-tools/cli)
 
+# Security And Governance
+## Propagating Deletes 
+Esempio qui: [code](https://github.com/derar-alhussein/Databricks-Certified-Data-Engineer-Professional/blob/7c91ff4d8a844b321e86c46efe419fd67f157046/6%20-%20Security%20and%20Governance/6.1%20-%20Propagating%20Deletes.py)
+
+## Dynamic Views
+Esempio qui: [code](https://github.com/derar-alhussein/Databricks-Certified-Data-Engineer-Professional/blob/7c91ff4d8a844b321e86c46efe419fd67f157046/6%20-%20Security%20and%20Governance/6.2%20-%20Dynamic%20Views.py)
+
+# Testing And Deployment
+Il comando **%run** permette di eseguire un'altro notebook da quello corrente. Dunque è possibile creare file arbitrari come ad esempio py ed importarli come si farebbe normalmente in python. Il comando **%sh** esegue bash mentre **%sql** codice sql.
+
+## Data Pipeline Testing
+In Databricks vi sono 2 tipi di test che possono essere effettuati su una pipeline: **quality** e **standard**.
+### Data Quality Test
+Sono usati per verificare la qualità dei dati, check sui constraints delle delta tables ad esempio.
+### Standard Test
+Si occupano di verificare la logica della pipeline. Vengono eseguiti ogni qualvolta viene modificata la stessa. Vi sono tre tipi:
+- **Unit Test:** Vengono usati per testare individualmente pezzi di codice, come ad esempio delle funzioni. Vengono verificate tramite assertion
+- **Integration Test:** Testano se i moduli del software sono integrati logicamente e funzionano come gruppo
+- **End to end:** Verifica se la pipeline viene propriamente eseguita in un caso reale, simulando un esecuzione dall'inizio alla fine e verificandone l'esito.
+# Monitoring And Logging
+## Permessi
+Si possono configurare due tipi di permessi nel cluster. Il primo è accessibile dall'admin console. Da qui si può dare a user o gruppi la possibilità di creare cluster. Il secondo è accessibile dal tab compute, dove è possibile modificare e gestire gli utenti ed i permessi che hanno su ogni singolo cluster:
+- **can manage**, tutti i permessi
+- **can restart**, avviare, stoppare e riavviare un cluster
+- **can attach**, utlizzare il cluster tramite notebook e vedere i logs
+## Logs
+Databricks mette a disposione diversi tool per i log relativi alle attività del cluster:
+- **EVENT LOGS**: mostra eventi importanti sul ciclo di vita di un cluster. Ogni evento può essere filtrato e vi è un log json che mostra le differenze tra prima e dopo.
+- **DRIVER LOGS**: vi sono tutti i log delle applicazioni e/o dei notebooks in esecuzione sul cluster. Abbiamo i classici STDOUT, STDERR, STDWAR e LOG4J logs.
+- **METRICS LOGS**: dove è possibile monnitorare le performance del cluster anche tramite l'ausilio di **GANGLIA UI**, un interfaccia che permette un semplice consulto. Vi sono 4 grafici sostanziali su: memoria, cpu, network e load.
+
+I logs sono visibili per ogni nodo.
 
 ---
 **Obsidian tags:** #databricks #BigData #deltalake
