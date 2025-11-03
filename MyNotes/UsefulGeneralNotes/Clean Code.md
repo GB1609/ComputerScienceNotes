@@ -1,5 +1,5 @@
-This guide aims to briefly summarise all the best practices for clean, maintainable and understandable code. At least as far as I have understood it over the years :D
-Many of the key concepts, as well as the structure of the document itself, are taken from one of the most useful and most recommended books for a programmer, especially a novice: [Clean Code](https://www.amazon.it/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882), by our beloved [Uncle Bob!](https://it.wikipedia.org/wiki/Robert_Cecil_Martin)
+Questa guida nasce con l’idea di riassumere — in modo semplice e diretto — le migliori pratiche per scrivere codice pulito, mantenibile e comprensibile. Almeno, per quanto sono riuscito a capirne in questi anni 😄
+Molti dei concetti (e anche la struttura del documento) sono ispirati a uno dei libri più utili e iconici per ogni programmatore, soprattutto per chi sta iniziando: [Clean Code](https://www.amazon.it/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882), del mitico [Uncle Bob!](https://it.wikipedia.org/wiki/Robert_Cecil_Martin)
 # How give a name?
 Se si parli di una variabile, di una funzione, di una classe, di un semplice parametro o qualunque altra cosa dare il corretto nome è fondamentale poiché questo ci permetterà di rendere comprensibile a terzi il nostro codice ed anche a noi stessi in un secondo momento! Vi sono regole base da seguire:
 - Dare nomi con un significato
@@ -26,10 +26,14 @@ Così come il nome lascia comprendere, le *funzioni* sono le azioni che è possi
 - Si devono utilizzare altre funzioni se la logica è complessa, è buona norma avere per ogni indentazione 2/3 righe
 - Dovrebbe occuparsi di una sola azione (Single Responsability), o in alternativa deve essere composta da N funzioni che si occupano di una singola azione
 - Cercare di rispettare appunto il principio di SRP e di OCP, ad esempio spesso l'utilizzo di switch le viola entrambi
-- Il nome di una funzione deve essere chiaro e descrittivo: meglio lungo e comprensibile che corto e ambiguo
+- Il nome di una funzione deve essere chiaro e descrittivo: meglio lungo e comprensibile che corto e ambiguo. Inoltre è preferibile usare VERBI
 - Evitare di avere funzioni con più di tre argomenti. Si preferiscono funzioni:
 	- **Monadiche:** servono a interrogare o operare su un solo argomento
 	- **Diadiche:** vanno usate solo se i due argomenti sono coerenti; altrimenti è meglio trasformarle in monadiche
 	- **Triadiche:** vanno evitate: complicano lettura e test del codice, da usare solo in casi eccezionali
 - Se vi è estrema necessità di passare più di questo numero di argomenti è preferibile avere un oggetto da passare
 - Seguire il principio DRY, l'idea è che ogni conoscenza o comportamento del sistema debba esistere in un solo punto
+## Conclusioni
+Ogni sistema è costruito a partire da un linguaggio specifico, per un dominio specifico. Il codice è creato dai programmatori per descriverlo.
+Le funzioni sono i suoi verbi e le classi i suoi nomi. Un buon codice deve raccontare una storia chiara, non deve solo funzionare.
+Scrivere funzioni chiare, ben definite e brevi aiuta a costruire un linguaggio che esprima quella storia in modo preciso.
