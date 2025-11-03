@@ -102,3 +102,7 @@ per tener sotto controllo il tuo codice e darti indicazioni real time. Tipici es
 
 Unica cosa da fare dunque è selezionare il proprio linguaggio, settare la convenzione relativa nel proprio IDE e lasciar
 far a esso!
+
+---
+
+**Tag Obsidian:** #clean #code #martin 
