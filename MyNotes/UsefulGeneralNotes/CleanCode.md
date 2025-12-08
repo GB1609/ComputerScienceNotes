@@ -102,7 +102,163 @@ per tener sotto controllo il tuo codice e darti indicazioni real time. Tipici es
 
 Unica cosa da fare dunque è selezionare il proprio linguaggio, settare la convenzione relativa nel proprio IDE e lasciar
 far a esso!
+# Oggetti (OO) e Strutture Dati (Codice procedurale)
+Perchè decidiamo di creare alcune variabili private? Perchè non lasciare tutto pubblico? Il motivo è semplice, vogliamo che queste restino immutabili, non vogliamo che nessuno possa vederle, modificarle o cambiarne il significato.
+
+## Programmazione orientata gli oggetti vs Strutture Dati
+Gli **oggetti** nascondono i loro dati dietro astrazioni e mettono a disposizione funzioni che lavorano su quei dati.  
+Le **strutture dati**, invece, mostrano apertamente i loro dati e **non** hanno funzioni significative. La differenza può sembrare minima, ma ha conseguenze molto importanti su come progettare un sistema.
+### Esempio Oggetti
+```java
+interface Shape {
+    public function area(): double;
+}
+
+class Square implements Shape {
+    private $side;
+
+    public function __construct(double $side) {
+        $this->side = $side;
+    }
+
+    public function area(): double {
+        return pow($this->side, 2);
+    }
+}
+
+class Rectangle implements Shape {
+    private $height;
+    private $width;
+
+    public function __construct(double $height, double $width) {
+        $this->height = $height;
+        $this->width = $width;
+    }
+
+    public function area(): double {
+        return $this->height * $this->width;
+    }
+}
+
+class Circle implements Shape {
+    private const PI = 3.141592653589793;
+    private $center;
+    private $radius;
+
+    public function __construct(double $radius) {
+        $this->radius = $radius;
+    }
+
+    public function area(): double {
+        return pow($this->radius, 2) * self::PI;
+    }
+}
+```
+
+### Esempio Strutture Dati
+```java
+class Square {
+    public $side;
+}
+
+class Rectangle {
+    public $height;
+    public $width;
+}
+
+class Circle {
+    public $center;
+    public $radius;
+}
+
+class Geometry {
+    private const PI = 3.141592653589793;
+
+    public function area(object $shape): double {
+        switch(true) {
+            case $shape instanceof Square:
+                return pow($shape->side, 2);
+            case $shape instanceof Rectangle:
+                return $shape->height * $shape->width;
+            case $shape instanceof Circle:
+                return pow($shape->radius, 2) * self::PI;
+            default:
+                throw new NoSuchShapeException();
+        }
+    }
+}
+```
+
+### Cosa succede, quale scegliere?
+
+Cosa succede dunque in un caso o nell'altro? 
+Se si ragiona a **strutture dati** le forme sono solo contenitori di dati, non hanno metodi, abbiamo dunque:
+- **PRO**: Facile aggiungere nuove funzioni
+- **CONTRO**: Difficile aggiungere nuovi tipi di dati
+Se si ragiona ad oggetti invece, ogni classe è responsabile della propria logica. 
+- **PRO**: Facile aggiungere nuovi tipi di dati
+- **CONTRO**: Difficile aggiungere nuove funzioni
+
+Si capisce subito il problema principale: **procedurale e oo sono l’uno l’opposto dell’altro**, ciò che è facile per uno è difficile per l’altro.
+In base al caso d'uso bisogna dunque fare la scelta corretta:
+- **Usa l’approccio procedurale** quando il sistema richiede di aggiungere spesso _nuove funzioni_ che lavorano su dati già noti e stabili.
+- **Usa l’approccio orientato agli oggetti** quando il sistema deve poter crescere con _nuovi tipi di entità_, cioè nuovi oggetti, mantenendo stabili le funzioni già esistenti.
+
+## Legge di Demetra
+La legge di Demetra è un ottima euristica che permette di definire al meglio come gli oggetti interagiscono tra loro.
+La Legge di Demetra dice che un oggetto non deve attraversare catene di chiamate per arrivare ai dati: deve chiedere direttamente ciò che gli serve al suo "vicino".
+
+Prendiamo ad esempio:
+```scala
+case class FuelTank(val level: Double)
+case class Engine(val fuelTank: FuelTank)
+case class Car(val engine: Engine)
+
+val fuel = car.engine.fuelTank.level
+
+```
+
+Questo pezzo di codice viola la legge di demetra in quanto attravera 3 livelli!
+
+Un modo per rispettarla è quella di modificare le classi facendo in modo che leggano solo dal vicino:
+
+```scala
+class FuelTank(private val level: Double) {
+  def currentLevel: Double = level
+}
+
+class Engine(private val fuelTank: FuelTank) {
+  def fuelLevel: Double = fuelTank.currentLevel
+}
+
+class Car(private val engine: Engine) {
+  def fuelLevel: Double = engine.fuelLevel
+}
+
+val fuel = car.fuelLevel
+```
+
+Esternamente possiamo usare solo fuelLevel, questo permette che la struttura intera di Car resti nascosta.
+
+**PRO:** codice più sicuro, chiaro e mantenibile.  
+**CONTRO:** a volte più verboso e con più metodi di passaggio.
+
+### Train Wrecks
+Le catene di chiamate lunghe, dette “*train wreck*", come ad esempio `ctxt.getOptions().getScratchDir().getAbsolutePath(` sono brutte da leggere e mantenere.  
+Se `ctxt`, `Options` e `ScratchDir` sono **oggetti**, allora usare catene del genere è una **violazione della Legge di Demetra**, perché il codice conosce troppo della loro struttura interna.  
+Se invece sono **semplici strutture dati**, allora è normale accedere ai loro campi e la Legge di Demetra **non si applica**.  I getter e setter confondono la distinzione tra oggetti e strutture, ma la regola resta:  
+- catena lunga usate su oggetti = cattivo stile;
+- catena lunga + strutture dati = accettabile, anche se da usare con moderazione.
+
+### Ibridi
+Una cosa che è assolutamente preferibile evitare sono gli ibridi! Hanno metodi che fanno cose importanti (come gli oggetti), ma allo stesso tempo espongono variabili pubbliche o getter/setter che rendono di fatto pubblici i loro dati (come le strutture).
+Questi ibridi sono ereditano i contro di entrambi:
+- è **difficile aggiungere nuove funzioni** (come negli oggetti)
+- è **difficile aggiungere nuovi tipi di dati** (come nel procedurale)
+Sono un segnale di **design confuso**, dove non è chiaro se si vuole proteggere i dati o definire comportamenti.  La regola è: **evitali**, perché portano solo complicazioni e rendono il codice fragile.
 
 ---
 
 **Tag Obsidian:** #clean #code #martin 
+
+
